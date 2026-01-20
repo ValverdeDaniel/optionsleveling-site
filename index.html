@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>OptionsLeveling — Options Profit Calculator</title>
+  <meta name="description" content="OptionsLeveling is an options profit calculator to estimate profit/loss, break-even, and risk for calls, puts, covered calls, and cash-secured puts." />
+
+  <link rel="canonical" href="https://optionsleveling.com/" />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="OptionsLeveling — Options Profit Calculator" />
+  <meta property="og:description" content="Estimate profit/loss, break-even, and risk for common options strategies." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://optionsleveling.com/" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="OptionsLeveling — Options Profit Calculator" />
+  <meta name="twitter:description" content="Estimate profit/loss, break-even, and risk for common options strategies." />
+
+  <!-- Optional: favicon -->
+  <!-- <link rel="icon" href="/favicon.ico" /> -->
+
+  <!-- Minimal styling (inline for a single-file deploy) -->
+  <style>
+    :root { color-scheme: light; }
+    body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; line-height: 1.5; }
+    header, main, footer { max-width: 980px; margin: 0 auto; padding: 24px; }
+    header { padding-top: 36px; }
+    .badge { display: inline-block; padding: 6px 10px; border: 1px solid #ddd; border-radius: 999px; font-size: 13px; }
+    h1 { margin: 14px 0 10px; font-size: clamp(28px, 4vw, 44px); line-height: 1.15; }
+    p { margin: 10px 0; color: #222; }
+    .cta { margin-top: 18px; display: flex; gap: 12px; flex-wrap: wrap; }
+    a.button { display: inline-block; padding: 12px 16px; border-radius: 10px; text-decoration: none; border: 1px solid #111; }
+    a.primary { background: #111; color: #fff; }
+    a.secondary { background: transparent; color: #111; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 22px; }
+    .card { border: 1px solid #e5e5e5; border-radius: 14px; padding: 16px; }
+    .card h2 { margin: 0 0 8px; font-size: 18px; }
+    ul { margin: 10px 0 0 18px; }
+    footer { padding-bottom: 36px; color: #666; font-size: 14px; }
+    .muted { color: #666; }
+    .links a { color: inherit; }
+  </style>
+
+  <!-- Structured data: WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"OptionsLeveling",
+    "url":"https://optionsleveling.com/",
+    "description":"OptionsLeveling is an options profit calculator to estimate profit/loss, break-even, and risk for common options strategies."
+  }
+  </script>
+
+  <!-- Structured data: SoftwareApplication -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"SoftwareApplication",
+    "name":"OptionsLeveling",
+    "applicationCategory":"FinanceApplication",
+    "operatingSystem":"Web",
+    "url":"https://optionsleveling.com/",
+    "description":"Options profit calculator for estimating profit/loss, break-even, and risk for calls, puts, covered calls, and cash-secured puts."
+  }
+  </script>
+</head>
+
+<body>
+  <header>
+    <span class="badge">Live • DNS/Hosting verification build</span>
+    <h1>OptionsLeveling — Options Profit Calculator</h1>
+    <p>
+      OptionsLeveling helps you estimate <strong>profit/loss</strong>, <strong>break-even</strong>, and <strong>risk</strong>
+      for common stock options strategies like calls, puts, covered calls, and cash-secured puts.
+    </p>
+
+    <div class="cta">
+      <a class="button primary" href="https://app.optionsleveling.com/" rel="noopener">Open the Calculator</a>
+      <a class="button secondary" href="#what-it-does">What it calculates</a>
+      <a class="button secondary" href="mailto:support@optionsleveling.com">Contact</a>
+    </div>
+
+    <p class="muted" style="margin-top:14px;">
+      Note: This is a minimal landing page while we finalize the full documentation and learning hub.
+    </p>
+  </header>
+
+  <main>
+    <section id="what-it-does" class="grid" aria-label="What OptionsLeveling calculates">
+      <div class="card">
+        <h2>What it calculates</h2>
+        <ul>
+          <li>Profit / loss at expiration</li>
+          <li>Break-even price</li>
+          <li>Max profit / max loss</li>
+          <li>Return percentage (ROI)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Supported strategies</h2>
+        <ul>
+          <li>Long Call / Long Put</li>
+          <li>Covered Call</li>
+          <li>Cash-Secured Put</li>
+          <li>(More strategy tools coming soon)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Built for clarity</h2>
+        <ul>
+          <li>Simple inputs</li>
+          <li>Clear outputs</li>
+          <li>Fast calculations</li>
+          <li>Works on mobile</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:16px;">
+      <h2>Quick definitions</h2>
+      <p><strong>In-the-money (ITM):</strong> An option with intrinsic value. A call is ITM when strike &lt; stock price; a put is ITM when strike &gt; stock price.</p>
+      <p><strong>Out-of-the-money (OTM):</strong> An option with no intrinsic value. A call is OTM when strike &gt; stock price; a put is OTM when strike &lt; stock price.</p>
+      <p><strong>Premium:</strong> The price paid (buy) or received (sell) for the option contract.</p>
+      <p><strong>Break-even:</strong> The stock price where profit/loss equals zero at expiration after accounting for premium.</p>
+    </section>
+
+    <section class="card" style="margin-top:16px;">
+      <h2>Coming next</h2>
+      <ul>
+        <li>Strategy guides (learn hub)</li>
+        <li>Documentation for calculator inputs and outputs</li>
+        <li>Examples for popular tickers and scenarios</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="links">
+      <p>
+        © <span id="year"></span> OptionsLeveling •
+        <a href="https://app.optionsleveling.com/" rel="noopener">App</a> •
+        <a href="mailto:support@optionsleveling.com">Support</a>
+      </p>
+    </div>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </footer>
+</body>
+</html>
