@@ -29,11 +29,40 @@
     :root { color-scheme: light; }
     body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; line-height: 1.5; }
     header, main, footer { max-width: 980px; margin: 0 auto; padding: 24px; }
-    header { padding-top: 36px; }
-    .badge { display: inline-block; padding: 6px 10px; border: 1px solid #ddd; border-radius: 999px; font-size: 13px; }
+    header { padding-top: 36px; text-align: center; }
+    .construction-banner {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #fef3c7;
+      border: 2px solid #f59e0b;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #92400e;
+      margin-bottom: 20px;
+    }
     h1 { margin: 14px 0 10px; font-size: clamp(28px, 4vw, 44px); line-height: 1.15; }
     p { margin: 10px 0; color: #222; }
-    .cta { margin-top: 18px; display: flex; gap: 12px; flex-wrap: wrap; }
+    .subtitle { font-size: 20px; color: #444; margin: 20px 0; }
+    .cta-container { margin: 40px 0; }
+    a.big-button {
+      display: inline-block;
+      padding: 20px 48px;
+      border-radius: 12px;
+      text-decoration: none;
+      background: #111;
+      color: #fff;
+      font-size: 22px;
+      font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+    }
+    a.big-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+    .arrow { margin-left: 10px; }
+    .cta { margin-top: 18px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
     a.button { display: inline-block; padding: 12px 16px; border-radius: 10px; text-decoration: none; border: 1px solid #111; }
     a.primary { background: #111; color: #fff; }
     a.secondary { background: transparent; color: #111; }
@@ -41,7 +70,7 @@
     .card { border: 1px solid #e5e5e5; border-radius: 14px; padding: 16px; }
     .card h2 { margin: 0 0 8px; font-size: 18px; }
     ul { margin: 10px 0 0 18px; }
-    footer { padding-bottom: 36px; color: #666; font-size: 14px; }
+    footer { padding-bottom: 36px; color: #666; font-size: 14px; text-align: center; }
     .muted { color: #666; }
     .links a { color: inherit; }
   </style>
@@ -73,72 +102,31 @@
 
 <body>
   <header>
-    <span class="badge">Live • DNS/Hosting verification build</span>
-    <h1>OptionsLeveling — Options Profit Calculator</h1>
-    <p>
-      OptionsLeveling helps you estimate <strong>profit/loss</strong>, <strong>break-even</strong>, and <strong>risk</strong>
-      for common stock options strategies like calls, puts, covered calls, and cash-secured puts.
+    <div class="construction-banner">This page is under construction</div>
+    <h1>OptionsLeveling</h1>
+    <p class="subtitle">
+      Our options profit calculator is live and ready to use.<br>
+      This landing page is still being built.
     </p>
 
-    <div class="cta">
-      <a class="button primary" href="https://app.optionsleveling.com/" rel="noopener">Open the Calculator</a>
-      <a class="button secondary" href="#what-it-does">What it calculates</a>
-      <a class="button secondary" href="mailto:support@optionsleveling.com">Contact</a>
+    <div class="cta-container">
+      <a class="big-button" href="https://app.optionsleveling.com/" rel="noopener">
+        Go to the App <span class="arrow">&rarr;</span>
+      </a>
     </div>
 
-    <p class="muted" style="margin-top:14px;">
-      Note: This is a minimal landing page while we finalize the full documentation and learning hub.
+    <p class="muted" style="margin-top:30px;">
+      Visit <strong>app.optionsleveling.com</strong> to use the calculator now.
     </p>
   </header>
 
   <main>
-    <section id="what-it-does" class="grid" aria-label="What OptionsLeveling calculates">
-      <div class="card">
-        <h2>What it calculates</h2>
-        <ul>
-          <li>Profit / loss at expiration</li>
-          <li>Break-even price</li>
-          <li>Max profit / max loss</li>
-          <li>Return percentage (ROI)</li>
-        </ul>
+    <section class="card" style="text-align: center; margin-top: 20px;">
+      <h2>Coming soon to this page</h2>
+      <p>Strategy guides, documentation, and learning resources are on the way.</p>
+      <div class="cta" style="margin-top: 16px;">
+        <a class="button secondary" href="mailto:support@optionsleveling.com">Contact Us</a>
       </div>
-
-      <div class="card">
-        <h2>Supported strategies</h2>
-        <ul>
-          <li>Long Call / Long Put</li>
-          <li>Covered Call</li>
-          <li>Cash-Secured Put</li>
-          <li>(More strategy tools coming soon)</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h2>Built for clarity</h2>
-        <ul>
-          <li>Simple inputs</li>
-          <li>Clear outputs</li>
-          <li>Fast calculations</li>
-          <li>Works on mobile</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="card" style="margin-top:16px;">
-      <h2>Quick definitions</h2>
-      <p><strong>In-the-money (ITM):</strong> An option with intrinsic value. A call is ITM when strike &lt; stock price; a put is ITM when strike &gt; stock price.</p>
-      <p><strong>Out-of-the-money (OTM):</strong> An option with no intrinsic value. A call is OTM when strike &gt; stock price; a put is OTM when strike &lt; stock price.</p>
-      <p><strong>Premium:</strong> The price paid (buy) or received (sell) for the option contract.</p>
-      <p><strong>Break-even:</strong> The stock price where profit/loss equals zero at expiration after accounting for premium.</p>
-    </section>
-
-    <section class="card" style="margin-top:16px;">
-      <h2>Coming next</h2>
-      <ul>
-        <li>Strategy guides (learn hub)</li>
-        <li>Documentation for calculator inputs and outputs</li>
-        <li>Examples for popular tickers and scenarios</li>
-      </ul>
     </section>
   </main>
 
