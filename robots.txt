@@ -1,0 +1,8 @@
+# robots.txt for Options Leveling
+# https://optionsleveling.com
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://optionsleveling.com/sitemap.xml

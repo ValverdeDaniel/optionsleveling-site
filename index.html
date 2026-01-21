@@ -1,146 +1,800 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <title>OptionsLeveling — Options Profit Calculator</title>
-  <meta name="description" content="OptionsLeveling is an options profit calculator to estimate profit/loss, break-even, and risk for calls, puts, covered calls, and cash-secured puts." />
+  <!-- Primary Meta Tags -->
+  <title>Options Leveling - Compare Stock vs Options Returns | Simulate Before You Trade</title>
+  <meta name="title" content="Options Leveling - Compare Stock vs Options Returns | Simulate Before You Trade">
+  <meta name="description" content="Stop guessing whether to buy stocks or options. Options Leveling simulates potential returns under any market scenario. Compare contracts, track positions, and make data-driven trading decisions.">
+  <meta name="keywords" content="options trading, options simulator, stock vs options, options screener, options watchlist, theta decay, Black-Scholes calculator, LEAPS investing, options Greeks, call options, put options, options analysis tool, options calculator">
+  <meta name="author" content="Options Leveling">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://optionsleveling.com/">
 
-  <link rel="canonical" href="https://optionsleveling.com/" />
-  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://optionsleveling.com/">
+  <meta property="og:title" content="Options Leveling - Know Your Options Before You Trade">
+  <meta property="og:description" content="Compare potential returns between stocks and options. Simulate scenarios. Make informed trading decisions with real-time data.">
+  <meta property="og:image" content="https://optionsleveling.com/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Options Leveling">
+  <meta property="og:locale" content="en_US">
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="OptionsLeveling — Options Profit Calculator" />
-  <meta property="og:description" content="Estimate profit/loss, break-even, and risk for common options strategies." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://optionsleveling.com/" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://optionsleveling.com/">
+  <meta name="twitter:title" content="Options Leveling - Know Your Options Before You Trade">
+  <meta name="twitter:description" content="Compare potential returns between stocks and options. Simulate scenarios. Make informed trading decisions.">
+  <meta name="twitter:image" content="https://optionsleveling.com/images/twitter-card.png">
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="OptionsLeveling — Options Profit Calculator" />
-  <meta name="twitter:description" content="Estimate profit/loss, break-even, and risk for common options strategies." />
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#0a0a0f">
+  <meta name="msapplication-TileColor" content="#0a0a0f">
 
-  <!-- Optional: favicon -->
-  <!-- <link rel="icon" href="/favicon.ico" /> -->
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections.css">
 
-  <!-- Minimal styling (inline for a single-file deploy) -->
-  <style>
-    :root { color-scheme: light; }
-    body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; line-height: 1.5; }
-    header, main, footer { max-width: 980px; margin: 0 auto; padding: 24px; }
-    header { padding-top: 36px; text-align: center; }
-    .construction-banner {
-      display: inline-block;
-      padding: 10px 20px;
-      background: #fef3c7;
-      border: 2px solid #f59e0b;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: 600;
-      color: #92400e;
-      margin-bottom: 20px;
-    }
-    h1 { margin: 14px 0 10px; font-size: clamp(28px, 4vw, 44px); line-height: 1.15; }
-    p { margin: 10px 0; color: #222; }
-    .subtitle { font-size: 20px; color: #444; margin: 20px 0; }
-    .cta-container { margin: 40px 0; }
-    a.big-button {
-      display: inline-block;
-      padding: 20px 48px;
-      border-radius: 12px;
-      text-decoration: none;
-      background: #111;
-      color: #fff;
-      font-size: 22px;
-      font-weight: 600;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
-    }
-    a.big-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-    }
-    .arrow { margin-left: 10px; }
-    .cta { margin-top: 18px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
-    a.button { display: inline-block; padding: 12px 16px; border-radius: 10px; text-decoration: none; border: 1px solid #111; }
-    a.primary { background: #111; color: #fff; }
-    a.secondary { background: transparent; color: #111; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 22px; }
-    .card { border: 1px solid #e5e5e5; border-radius: 14px; padding: 16px; }
-    .card h2 { margin: 0 0 8px; font-size: 18px; }
-    ul { margin: 10px 0 0 18px; }
-    footer { padding-bottom: 36px; color: #666; font-size: 14px; text-align: center; }
-    .muted { color: #666; }
-    .links a { color: inherit; }
-  </style>
-
-  <!-- Structured data: WebSite -->
+  <!-- Schema.org Structured Data - SoftwareApplication -->
   <script type="application/ld+json">
   {
-    "@context":"https://schema.org",
-    "@type":"WebSite",
-    "name":"OptionsLeveling",
-    "url":"https://optionsleveling.com/",
-    "description":"OptionsLeveling is an options profit calculator to estimate profit/loss, break-even, and risk for common options strategies."
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Options Leveling",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web Browser",
+    "description": "Options trading analysis platform that simulates potential returns and helps traders compare stock investments vs options contracts using Black-Scholes pricing.",
+    "url": "https://app.optionsleveling.com",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "description": "Free tier available"
+    },
+    "featureList": [
+      "Options Screener with scenario simulation",
+      "Watchlist with multi-scenario analysis",
+      "Historical premium charts",
+      "Black-Scholes pricing",
+      "Greeks calculation (delta, theta, gamma, vega)",
+      "CSV export"
+    ]
   }
   </script>
 
-  <!-- Structured data: SoftwareApplication -->
+  <!-- Schema.org Structured Data - FAQPage -->
   <script type="application/ld+json">
   {
-    "@context":"https://schema.org",
-    "@type":"SoftwareApplication",
-    "name":"OptionsLeveling",
-    "applicationCategory":"FinanceApplication",
-    "operatingSystem":"Web",
-    "url":"https://optionsleveling.com/",
-    "description":"Options profit calculator for estimating profit/loss, break-even, and risk for calls, puts, covered calls, and cash-secured puts."
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Options Leveling?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Options Leveling is a trading analysis platform that helps investors compare potential returns between buying stocks and buying options contracts. It simulates how your investment would perform under different market scenarios using Black-Scholes pricing, helping you make data-driven decisions about where to allocate capital."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does the options screener work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The screener lets you input your expected stock movement and timeframe, then finds options contracts that match your thesis. It calculates projected returns using Black-Scholes pricing and displays results sorted by potential gain percentage."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is theta decay in options trading?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Theta decay refers to the daily loss of value in an options contract as it approaches expiration. Options are wasting assets - they lose value every day simply due to the passage of time, even if the underlying stock price remains unchanged."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are LEAPS options?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "LEAPS (Long-Term Equity Anticipation Securities) are options contracts with expiration dates more than one year away. They experience less theta decay than short-term options and are often used as stock replacement strategies."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Options Leveling free to use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, Options Leveling offers a free tier that gives you access to core features. Premium features for serious traders are also available."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Schema.org Structured Data - Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Options Leveling",
+    "url": "https://optionsleveling.com",
+    "description": "Options trading analysis platform providing simulation-based tools for comparing stock and options investments."
   }
   </script>
 </head>
-
 <body>
-  <header>
-    <div class="construction-banner">This page is under construction</div>
-    <h1>OptionsLeveling</h1>
-    <p class="subtitle">
-      Our options profit calculator is live and ready to use.<br>
-      This landing page is still being built.
-    </p>
+  <!-- Skip Link for Accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <div class="cta-container">
-      <a class="big-button" href="https://app.optionsleveling.com/" rel="noopener">
-        Go to the App <span class="arrow">&rarr;</span>
+  <!-- Header / Navigation -->
+  <header class="site-header" role="banner">
+    <nav class="nav container" role="navigation" aria-label="Main navigation">
+      <a href="/" class="nav-logo" aria-label="Options Leveling home">
+        Options<span>Leveling</span>
       </a>
-    </div>
 
-    <p class="muted" style="margin-top:30px;">
-      Visit <strong>app.optionsleveling.com</strong> to use the calculator now.
-    </p>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation menu">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+
+      <ul id="nav-menu" class="nav-menu" role="menubar">
+        <li role="none"><a href="#screener" role="menuitem">Features</a></li>
+        <li role="none"><a href="#how-it-works" role="menuitem">How It Works</a></li>
+        <li role="none"><a href="#faq" role="menuitem">FAQ</a></li>
+        <li role="none"><a href="#pricing" role="menuitem">Pricing</a></li>
+        <li role="none">
+          <a href="https://app.optionsleveling.com/login" role="menuitem">Login</a>
+        </li>
+        <li role="none">
+          <a href="https://app.optionsleveling.com" role="menuitem" class="btn btn-primary btn-sm">
+            Get Started
+          </a>
+        </li>
+      </ul>
+    </nav>
   </header>
 
-  <main>
-    <section class="card" style="text-align: center; margin-top: 20px;">
-      <h2>Coming soon to this page</h2>
-      <p>Strategy guides, documentation, and learning resources are on the way.</p>
-      <div class="cta" style="margin-top: 16px;">
-        <a class="button secondary" href="mailto:support@optionsleveling.com">Contact Us</a>
+  <!-- Main Content -->
+  <main id="main-content" role="main">
+
+    <!-- ================================================================
+         SECTION 1: Hero
+         ================================================================ -->
+    <section id="hero" class="hero" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="hero-content">
+          <span class="badge hero-badge">Options Analysis Platform</span>
+          <h1 id="hero-heading" class="hero-title">
+            Know Your Options<br>
+            <span class="text-gradient">Before You Trade</span>
+          </h1>
+          <p class="hero-subtitle">
+            Compare potential returns between stocks and options.
+            Simulate scenarios. Make informed decisions.
+          </p>
+          <ul class="hero-features" aria-label="Key benefits">
+            <li>Stop guessing whether buying the stock or option is better</li>
+            <li>See exactly how investments perform under different conditions</li>
+            <li>Track positions and know when to exit</li>
+          </ul>
+          <div class="hero-cta">
+            <a href="https://app.optionsleveling.com" class="btn btn-primary btn-lg">
+              Start Analyzing
+            </a>
+            <a href="#how-it-works" class="btn btn-secondary btn-lg">
+              Learn More
+            </a>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <img
+            src="images/screenshots/Screener_Simulation_Table.png"
+            alt="Options Leveling screener showing simulated returns for various options contracts with percentage gains highlighted"
+            class="hero-screenshot"
+            width="600"
+            height="400"
+            loading="eager"
+          >
+        </div>
       </div>
     </section>
+
+    <!-- ================================================================
+         SECTION 2: Problem Statement
+         ================================================================ -->
+    <section id="problem" class="section-dark" aria-labelledby="problem-heading">
+      <div class="container">
+        <header class="section-header">
+          <h2 id="problem-heading" class="section-title">The Hidden Cost of Guessing</h2>
+          <p class="section-subtitle">
+            Every investment decision has an opportunity cost. Without proper analysis, you're leaving money on the table.
+          </p>
+        </header>
+
+        <div class="problem-grid grid md:grid-cols-3 gap-8">
+          <article class="card">
+            <h3 class="card-title">The Stock vs. Options Dilemma</h3>
+            <div class="card-example">
+              <p><strong>Buying 100 shares of AAPL at $200</strong> = $20,000 investment</p>
+              <p><strong>Buying 1 call option</strong> might cost $1,500</p>
+            </div>
+            <p class="card-question">
+              Which one makes more money if AAPL goes up 15%? What if it only goes up 5%? Or takes 6 months instead of 3?
+            </p>
+          </article>
+
+          <article class="card">
+            <h3 class="card-title">Time Works Against You</h3>
+            <p>Options contracts lose value every single day through <strong>theta decay</strong>.</p>
+            <p>A 90-day option and a 365-day option behave completely differently.</p>
+            <p class="text-accent">Without simulation, you're flying blind.</p>
+          </article>
+
+          <article class="card">
+            <h3 class="card-title">Scenarios Matter</h3>
+            <p>"I think the stock will go up" is <em>not</em> a strategy.</p>
+            <ul>
+              <li>How <strong>much</strong> will it go up?</li>
+              <li>Over what <strong>timeframe</strong>?</li>
+              <li>Which contract <strong>maximizes</strong> returns?</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SECTION 3: Feature - Screener
+         ================================================================ -->
+    <section id="screener" aria-labelledby="screener-heading">
+      <div class="container">
+        <div class="feature-layout">
+          <div class="feature-content">
+            <span class="badge">Core Feature</span>
+            <h2 id="screener-heading" class="feature-title">Find the Right Contract</h2>
+            <p class="feature-description">
+              The Options Screener helps you discover options contracts that match your market thesis by simulating potential returns before you buy.
+            </p>
+
+            <div class="feature-list">
+              <div class="feature-item">
+                <h3>Three Modes for Every Experience Level</h3>
+                <ul>
+                  <li><strong>Basic Mode:</strong> Choose from 6 pre-built strategies (Short-term ITM, LEAPS OTM, etc.)</li>
+                  <li><strong>Intermediate Mode:</strong> Mix and match expiration windows and strike positions</li>
+                  <li><strong>Advanced Mode:</strong> Full control over every parameter for sophisticated analysis</li>
+                </ul>
+              </div>
+
+              <div class="feature-item">
+                <h3>Scenario-Based Analysis</h3>
+                <ul>
+                  <li>Input your expected stock movement (+10%, +25%, +50%)</li>
+                  <li>Set your target timeframe (when do you expect the move?)</li>
+                  <li>See projected option values using Black-Scholes pricing</li>
+                </ul>
+              </div>
+
+              <div class="feature-item">
+                <h3>Compare Across Contracts</h3>
+                <ul>
+                  <li>View results sorted by potential percentage gain</li>
+                  <li>Compare ITM vs OTM vs ATM strikes at a glance</li>
+                  <li>Export to CSV for further analysis</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-visual">
+            <figure>
+              <img
+                src="images/screenshots/Screener_Simulation_Table.png"
+                alt="Options Leveling screener results table showing ticker symbols, strike prices, expiration dates, current premiums, simulated premiums, and percentage gains for various options contracts"
+                class="feature-screenshot"
+                width="600"
+                height="400"
+                loading="lazy"
+              >
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SECTION 4: Feature - Watchlist
+         ================================================================ -->
+    <section id="watchlist" class="section-alt" aria-labelledby="watchlist-heading">
+      <div class="container">
+        <div class="feature-layout feature-layout-reverse">
+          <div class="feature-content">
+            <span class="badge">Portfolio Tracking</span>
+            <h2 id="watchlist-heading" class="feature-title">Track Your Positions Like a Pro</h2>
+            <p class="feature-description">
+              Save contracts you own or are considering, track performance over time, and simulate how they would perform under different market conditions.
+            </p>
+
+            <div class="feature-list">
+              <div class="feature-item">
+                <h3>Portfolio Tracking</h3>
+                <ul>
+                  <li>Save contracts with your actual cost basis</li>
+                  <li>See real-time premium and underlying price changes</li>
+                  <li>Track percentage change from your entry point</li>
+                  <li>Organize contracts into groups by strategy or sector</li>
+                </ul>
+              </div>
+
+              <div class="feature-item">
+                <h3>Multi-Scenario Simulation</h3>
+                <p>Each saved contract shows performance under <strong>7 scenarios</strong>:</p>
+                <p class="scenario-range">+/-5% &bull; +/-10% &bull; +/-20% &bull; +/-35% &bull; +/-50% &bull; +/-100% &bull; +/-200%</p>
+                <p>See both upside potential and downside risk at a glance.</p>
+              </div>
+
+              <div class="feature-item">
+                <h3>Time-Based Tracking</h3>
+                <ul>
+                  <li>Set target exit dates and watch the countdown</li>
+                  <li>See how time decay affects your positions daily</li>
+                  <li>Reset countdowns when you adjust your thesis</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-visual">
+            <figure>
+              <img
+                src="images/screenshots/watchlist_image.png"
+                alt="Options Leveling watchlist showing saved contracts organized into groups with cost basis tracking, real-time price changes, and multi-scenario simulation results"
+                class="feature-screenshot"
+                width="600"
+                height="400"
+                loading="lazy"
+              >
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SECTION 5: Feature - Charts
+         ================================================================ -->
+    <section id="charts" aria-labelledby="charts-heading">
+      <div class="container">
+        <div class="feature-layout">
+          <div class="feature-content">
+            <span class="badge">Visual Analysis</span>
+            <h2 id="charts-heading" class="feature-title">See the Full Picture</h2>
+            <p class="feature-description">
+              View historical option premium prices alongside the underlying stock. Understand how your contract's value has changed over time.
+            </p>
+
+            <ul class="feature-bullets">
+              <li>Charts show premium history for any saved contract</li>
+              <li>Compare option price movement to underlying stock movement</li>
+              <li>Identify patterns and optimal entry/exit points</li>
+              <li>Track implied volatility changes over time</li>
+            </ul>
+          </div>
+
+          <div class="feature-visual">
+            <figure>
+              <img
+                src="images/screenshots/graphs_image.png"
+                alt="Options Leveling premium history chart showing historical option price movement alongside underlying stock price with entry point markers and percentage change indicators"
+                class="feature-screenshot"
+                width="600"
+                height="400"
+                loading="lazy"
+              >
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SECTION 6: How It Works
+         ================================================================ -->
+    <section id="how-it-works" class="section-dark" aria-labelledby="how-heading">
+      <div class="container">
+        <header class="section-header">
+          <h2 id="how-heading" class="section-title">From Thesis to Trade in 3 Steps</h2>
+        </header>
+
+        <ol class="steps-grid">
+          <li class="step-card">
+            <span class="step-number" aria-hidden="true">1</span>
+            <h3 class="step-title">Define Your Thesis</h3>
+            <ul>
+              <li>Pick your tickers (AAPL, MSFT, NVDA, etc.)</li>
+              <li>Set your expected stock movement (+20% gain? -10% pullback?)</li>
+              <li>Choose your timeframe (30 days? 6 months? LEAPS?)</li>
+            </ul>
+          </li>
+
+          <li class="step-card">
+            <span class="step-number" aria-hidden="true">2</span>
+            <h3 class="step-title">Find Matching Contracts</h3>
+            <ul>
+              <li>The screener finds options that match your criteria</li>
+              <li>Compare projected returns across strikes and expirations</li>
+              <li>See Greeks (delta, theta, gamma) for each contract</li>
+              <li>Identify which contract maximizes your risk/reward</li>
+            </ul>
+          </li>
+
+          <li class="step-card">
+            <span class="step-number" aria-hidden="true">3</span>
+            <h3 class="step-title">Track and Adjust</h3>
+            <ul>
+              <li>Save contracts to your watchlist</li>
+              <li>Monitor real-time performance vs. your cost basis</li>
+              <li>Run simulations as market conditions change</li>
+              <li>Know exactly when to exit based on your targets</li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="section-cta text-center mt-8">
+          <a href="https://app.optionsleveling.com" class="btn btn-primary btn-lg">
+            Start Your Analysis
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SECTION 7: Who This Is For
+         ================================================================ -->
+    <section id="audience" aria-labelledby="audience-heading">
+      <div class="container">
+        <header class="section-header">
+          <h2 id="audience-heading" class="section-title">Built for Options Traders Who Want Clarity</h2>
+        </header>
+
+        <div class="audience-grid grid md:grid-cols-3 gap-8">
+          <article class="card audience-card">
+            <h3>Stock Investors Considering Options</h3>
+            <blockquote>
+              "I want to try options but don't know where to start."
+            </blockquote>
+            <blockquote>
+              "I want to amplify my returns without betting the farm."
+            </blockquote>
+            <p class="audience-use-case">
+              <strong>Perfect for:</strong> Long calls on stocks you're already bullish on
+            </p>
+          </article>
+
+          <article class="card audience-card">
+            <h3>Active Options Traders</h3>
+            <blockquote>
+              "I need a faster way to screen contracts."
+            </blockquote>
+            <blockquote>
+              "I want to compare scenarios without spreadsheets."
+            </blockquote>
+            <p class="audience-use-case">
+              <strong>Perfect for:</strong> Swing trading options, earnings plays
+            </p>
+          </article>
+
+          <article class="card audience-card">
+            <h3>Long-Term Investors Using LEAPS</h3>
+            <blockquote>
+              "I want leveraged exposure with minimal time decay."
+            </blockquote>
+            <blockquote>
+              "I'm looking for stock replacement strategies."
+            </blockquote>
+            <p class="audience-use-case">
+              <strong>Perfect for:</strong> Deep ITM LEAPS as stock alternatives
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SECTION 8: Key Differentiators
+         ================================================================ -->
+    <section id="why-us" class="section-alt" aria-labelledby="why-heading">
+      <div class="container">
+        <header class="section-header">
+          <h2 id="why-heading" class="section-title">Why Options Leveling?</h2>
+        </header>
+
+        <div class="differentiators-grid grid md:grid-cols-2 gap-8">
+          <div class="diff-item">
+            <h3>Simulation-First Approach</h3>
+            <p>Every analysis shows projected values under your specific scenario. Not just current prices &mdash; future prices based on your thesis.</p>
+          </div>
+
+          <div class="diff-item">
+            <h3>Multiple Scenarios at Once</h3>
+            <p>Watchlist shows 7 different outcomes simultaneously. Understand your best case AND worst case before committing capital.</p>
+          </div>
+
+          <div class="diff-item">
+            <h3>Real Data, Real-Time</h3>
+            <p>Real-time market data for accurate analysis. Greeks calculated using industry-standard Black-Scholes pricing model.</p>
+          </div>
+
+          <div class="diff-item">
+            <h3>Position Tracking with Cost Basis</h3>
+            <p>Track actual P&L against what you paid. See percentage change from your entry, not just market price.</p>
+          </div>
+
+          <div class="diff-item">
+            <h3>No Complexity Hidden</h3>
+            <p>See all Greeks (delta, theta, gamma, vega, rho). View bid/ask spreads, volume, open interest. Export everything to CSV.</p>
+          </div>
+
+          <div class="diff-item">
+            <h3>Fast and Focused</h3>
+            <p>No bloat, no unnecessary features. Built specifically for the stock-vs-options decision that every investor faces.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SECTION 9: FAQ (SEO/LLM Optimized)
+         ================================================================ -->
+    <section id="faq" aria-labelledby="faq-heading">
+      <div class="container container-narrow">
+        <header class="section-header">
+          <h2 id="faq-heading" class="section-title">Frequently Asked Questions</h2>
+        </header>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What is Options Leveling?</summary>
+            <div class="faq-answer">
+              <p>Options Leveling is a trading analysis platform that helps investors compare potential returns between buying stocks and buying options contracts. It simulates how your investment would perform under different market scenarios using Black-Scholes pricing, helping you make data-driven decisions about where to allocate capital.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>How does the options screener work?</summary>
+            <div class="faq-answer">
+              <p>The screener lets you input your expected stock movement (e.g., +20%) and timeframe (e.g., 90 days), then finds options contracts that match your thesis. It calculates projected returns using Black-Scholes pricing and displays results sorted by potential gain percentage. You can compare ITM, ATM, and OTM strikes across different expirations.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>What is theta decay in options trading?</summary>
+            <div class="faq-answer">
+              <p>Theta decay (also called time decay) refers to the daily loss of value in an options contract as it approaches expiration. Options are wasting assets &mdash; they lose value every day simply due to the passage of time, even if the underlying stock price remains unchanged. Theta decay accelerates as expiration approaches, which is why shorter-term options are riskier than LEAPS.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>What are LEAPS options?</summary>
+            <div class="faq-answer">
+              <p>LEAPS (Long-Term Equity Anticipation Securities) are options contracts with expiration dates more than one year away. They experience less theta decay than short-term options because time value erodes more slowly with longer durations. LEAPS are often used as stock replacement strategies, allowing investors to control 100 shares with less capital than buying the stock outright.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>What does ITM, ATM, and OTM mean?</summary>
+            <div class="faq-answer">
+              <p><strong>ITM (In The Money)</strong>: For calls, when the strike price is below the current stock price. For puts, when the strike is above the current price. ITM options have intrinsic value.</p>
+              <p><strong>ATM (At The Money)</strong>: When the strike price equals or is very close to the current stock price.</p>
+              <p><strong>OTM (Out of The Money)</strong>: For calls, when the strike is above the current stock price. For puts, when the strike is below. OTM options have no intrinsic value, only time value.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>What are the Greeks in options trading?</summary>
+            <div class="faq-answer">
+              <p>The Greeks are metrics that measure different sensitivities of an option's price:</p>
+              <ul>
+                <li><strong>Delta</strong>: How much the option price changes when the stock moves $1</li>
+                <li><strong>Theta</strong>: How much value the option loses per day (time decay)</li>
+                <li><strong>Gamma</strong>: How much delta changes when the stock moves $1</li>
+                <li><strong>Vega</strong>: How much the option price changes with a 1% change in implied volatility</li>
+                <li><strong>Rho</strong>: Sensitivity to interest rate changes</li>
+              </ul>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is Options Leveling free to use?</summary>
+            <div class="faq-answer">
+              <p>Yes, Options Leveling offers a free tier that gives you access to core screening and watchlist features. Premium features for serious traders are also available for those who want advanced capabilities and higher usage limits.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>How accurate are the simulations?</summary>
+            <div class="faq-answer">
+              <p>Simulations use the Black-Scholes pricing model, the industry-standard formula for options valuation. While no model can predict the future perfectly (implied volatility changes, for example), Black-Scholes provides mathematically sound projections based on your specified scenarios.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SECTION 10: Glossary (SEO/LLM Optimized)
+         ================================================================ -->
+    <section id="glossary" aria-labelledby="glossary-heading">
+      <div class="container">
+        <header class="section-header">
+          <h2 id="glossary-heading" class="section-title">Options Trading Glossary</h2>
+          <p class="section-subtitle">Key terms every options trader should know</p>
+        </header>
+
+        <dl class="glossary-grid">
+          <div class="glossary-item">
+            <dt>Call Option</dt>
+            <dd>A contract that gives the buyer the right (but not the obligation) to <strong>buy</strong> 100 shares of a stock at a specified strike price before the expiration date. Traders buy calls when they expect the underlying stock to rise.</dd>
+          </div>
+
+          <div class="glossary-item">
+            <dt>Put Option</dt>
+            <dd>A contract that gives the buyer the right (but not the obligation) to <strong>sell</strong> 100 shares of a stock at a specified strike price before the expiration date. Traders buy puts when they expect the underlying stock to fall.</dd>
+          </div>
+
+          <div class="glossary-item">
+            <dt>Strike Price</dt>
+            <dd>The predetermined price at which the option holder can buy (for calls) or sell (for puts) the underlying stock. Also known as the exercise price.</dd>
+          </div>
+
+          <div class="glossary-item">
+            <dt>Premium</dt>
+            <dd>The price paid to purchase an options contract. Premium is quoted per share, so a $5.00 premium costs $500 for one contract (which represents 100 shares).</dd>
+          </div>
+
+          <div class="glossary-item">
+            <dt>Expiration Date</dt>
+            <dd>The date on which an options contract expires and becomes worthless if not exercised. After this date, the option holder loses all rights granted by the contract.</dd>
+          </div>
+
+          <div class="glossary-item">
+            <dt>Theta Decay</dt>
+            <dd>The rate at which an option loses value each day as it approaches expiration. Also called time decay. Theta is expressed as a negative number representing daily dollar loss.</dd>
+          </div>
+
+          <div class="glossary-item">
+            <dt>Black-Scholes Model</dt>
+            <dd>The industry-standard mathematical formula for calculating theoretical option prices. It considers stock price, strike price, time to expiration, volatility, risk-free interest rate, and dividends.</dd>
+          </div>
+
+          <div class="glossary-item">
+            <dt>LEAPS</dt>
+            <dd>Long-Term Equity Anticipation Securities. Options with expiration dates more than one year away. LEAPS experience slower theta decay and are often used as stock replacement strategies.</dd>
+          </div>
+
+          <div class="glossary-item">
+            <dt>Delta</dt>
+            <dd>Measures how much an option's price is expected to change when the underlying stock moves $1. Delta ranges from 0 to 1 for calls and 0 to -1 for puts. A delta of 0.50 means the option gains $0.50 when the stock rises $1.</dd>
+          </div>
+
+          <div class="glossary-item">
+            <dt>Implied Volatility (IV)</dt>
+            <dd>The market's expectation of future price volatility, derived from current option prices. Higher IV means more expensive options premiums. IV typically spikes before earnings announcements.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         SECTION 11: Final CTA / Pricing
+         ================================================================ -->
+    <section id="pricing" class="section-cta-final" aria-labelledby="pricing-heading">
+      <div class="container">
+        <header class="section-header">
+          <h2 id="pricing-heading" class="section-title">Ready to Level Up Your Options Game?</h2>
+          <p class="section-subtitle">
+            Start analyzing options for free. Upgrade when you need more power.
+          </p>
+        </header>
+
+        <div class="pricing-cta">
+          <a href="https://app.optionsleveling.com" class="btn btn-primary btn-xl">
+            Get Started Free
+          </a>
+          <p class="pricing-note">No credit card required</p>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <footer>
-    <div class="links">
-      <p>
-        © <span id="year"></span> OptionsLeveling •
-        <a href="https://app.optionsleveling.com/" rel="noopener">App</a> •
-        <a href="mailto:support@optionsleveling.com">Support</a>
-      </p>
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="footer-logo">
+            Options<span>Leveling</span>
+          </a>
+          <p class="footer-tagline">Clarity through simulation</p>
+        </div>
+
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <div class="footer-nav-group">
+            <h3>Product</h3>
+            <ul>
+              <li><a href="#screener">Screener</a></li>
+              <li><a href="#watchlist">Watchlist</a></li>
+              <li><a href="#charts">Charts</a></li>
+              <li><a href="#pricing">Pricing</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-nav-group">
+            <h3>Resources</h3>
+            <ul>
+              <li><a href="#faq">FAQ</a></li>
+              <li><a href="#glossary">Glossary</a></li>
+              <li><a href="#how-it-works">How It Works</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-nav-group">
+            <h3>Company</h3>
+            <ul>
+              <li><a href="https://app.optionsleveling.com">Launch App</a></li>
+              <li><a href="mailto:support@optionsleveling.com">Contact</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-disclaimer">
+          <strong>Risk Disclosure:</strong> Options trading involves substantial risk and is not suitable for all investors. Past performance does not guarantee future results. The simulations and calculations provided by Options Leveling are for informational purposes only and should not be considered investment advice. Always consult with a qualified financial advisor before making investment decisions.
+        </p>
+        <p class="footer-copyright">
+          &copy; <span id="current-year">2026</span> Options Leveling. All rights reserved.
+        </p>
+      </div>
     </div>
-    <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
   </footer>
+
+  <!-- Minimal JavaScript -->
+  <script>
+    // Update copyright year
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // Mobile navigation toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (navToggle && navMenu) {
+      navToggle.addEventListener('click', function() {
+        const expanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', !expanded);
+        navMenu.classList.toggle('is-open');
+      });
+
+      // Close menu when clicking a link
+      navMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navToggle.setAttribute('aria-expanded', 'false');
+          navMenu.classList.remove('is-open');
+        });
+      });
+    }
+  </script>
 </body>
 </html>
