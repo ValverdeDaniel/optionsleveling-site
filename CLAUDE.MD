@@ -183,7 +183,7 @@ SECTION 6: HOW IT WORKS (USER FLOW)
 HEADLINE: "From Thesis to Trade in 3 Steps"
 
 STEP 1: DEFINE YOUR THESIS
-- Pick your tickers (AAPL, MSFT, NVDA, etc.)
+- Pick your tickers (AAPL, MSFT, NVDA, etc.)n
 - Set your expected stock movement (+20% gain? -10% pullback?)
 - Choose your timeframe (30 days? 6 months? LEAPS?)
 

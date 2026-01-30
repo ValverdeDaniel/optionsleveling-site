@@ -34,8 +34,9 @@
 
 /* Primary Button */
 .btn-primary {
-  color: var(--color-text-inverse);
+  color: #ffffff;
   background: var(--color-accent-primary);
+  font-weight: 600;
 }
 
 .btn-primary:hover {
